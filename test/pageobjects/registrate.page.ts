@@ -1,12 +1,12 @@
 const Page = require('./page');
 class RegistrationPage extends Page {
 
-    get inputUsername () { return $('#username') }
-    get inputPassword () { return $('#password') }
+    get inputNewEmail () { return $('#email_create') }
+    get inputCustomerName () { return $('#password') }
     get btnSubmit () { return $('button[type="submit"]') }
 
-    register (username, password) {
-        this.inputUsername.setValue(username);
+    register (email,username, password) {
+        this.inputNewEmail.setValue(email);
         this.inputPassword.setValue(password);
         this.btnSubmit.click(); 
     }

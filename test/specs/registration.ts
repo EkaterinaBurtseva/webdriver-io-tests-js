@@ -1,8 +1,10 @@
-import * as assert  from "assert";
-
+import * as chai from 'chai'
 describe('User', () => {
     it('can register', () => {
-      browser.url(`/index.php?controller=authentication&back=my-account`);  
+      const expect = chai.expect;
+      const assert = chai.assert;
+      const RegistrationPage  = require('../pageobjects/registrate.page'); 
+      RegistrationPage.open();  
       browser.pause(5000);
       var id =  new Date().getTime()/1000;
       $('#email_create').setValue(`blablatest${id}@test.com`);
@@ -19,19 +21,15 @@ describe('User', () => {
       $('#address1').setValue("address1");
       $('#city').setValue("city");
       const stateSelect = $('select[id="id_state"]')
-      stateSelect.selectByVisibleText("Kansas");
+      stateSelect.selectByVisibleText("California");
       $('#postcode').setValue("04060");
       $('#phone_mobile').setValue("0632900042");
-      $('input[id="alias"]').setValue("alias");
-      $('button[id="submitAccount"]').click();
+      $('#alias').setValue("alias");
+      $('#submitAccount').click();
       const myAccount = $('p.info-account');
-      assert(myAccount.isDisplayed, 'Expected my account page is opened aftre success registration');
+      expect(myAccount.isDisplayed()).to.equal(true,'Expected my account page is opened aftre success registration' )
       const myAccountText = myAccount.getText();
-      assert(myAccount.getText().includes('Welcome to your account'), `Account text not equal to ${myAccountText}`);
-
-
-
-
+      assert.isTrue(myAccount.getText().includes('Welcome to your account'), `Account text not equal to ${myAccountText}`);
 
     })
 });
