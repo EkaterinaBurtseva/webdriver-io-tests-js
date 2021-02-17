@@ -1,5 +1,5 @@
 import * as chai from 'chai'
-describe('User', () => {
+describe('@SMOKE User', () => {
     it('can register', () => {
       const expect = chai.expect;
       const assert = chai.assert;

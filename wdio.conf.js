@@ -8,7 +8,10 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
-    maxInstances: 10,
+    maxInstances: 1,
+    beforeTest: function (test, context) {
+    console.log('WDIO: BEFORE SUITE: ', test, context)
+    },
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
@@ -39,6 +42,9 @@ exports.config = {
     reporters: ['spec'],
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 10000,
+        retries: 2,
+        slow: 1000,
+        grep: '@SMOKE'
     },  
 }
