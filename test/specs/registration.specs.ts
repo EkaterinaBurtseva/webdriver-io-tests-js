@@ -1,5 +1,6 @@
 import * as chai from 'chai'
 import { registrationPage } from '../pageobjects/registrate.page';
+import { myAccountInfoPage } from '../pageobjects/myAccountInfo.page';
 
 describe('@SMOKE User', () => {
     it('can register', () => {
@@ -14,10 +15,10 @@ describe('@SMOKE User', () => {
       registrationPage.fillAccountForm( "testName", "lastname", "address1", "city","California", "04060","0632900042", "alias");
       registrationPage.submitForm();
   
-      expect(registrationPage.isAccountPageDisplayed())
+      expect(myAccountInfoPage.isAccountPageDisplayed())
           .to.equal(true,'Expected my account page is opened aftre success registration');
-      assert.isTrue(registrationPage.getTextAccountPageText()
-         .includes('Welcome to your account'), `Account text not equal to ${registrationPage.getTextAccountPageText()}`);
+      assert.isTrue(myAccountInfoPage.getTextAccountPageText()
+         .includes('Welcome to your account'), `Account text not equal to ${myAccountInfoPage.getTextAccountPageText()}`);
 
     })
 });

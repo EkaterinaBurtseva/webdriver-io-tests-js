@@ -36,14 +36,14 @@ exports.config = {
     baseUrl: 'http://automationpractice.com',
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
-    connectionRetryCount: 3,
+    connectionRetryCount: 1,
     services: ['chromedriver'],
     framework: 'mocha',
     reporters: ['spec'],
     mochaOpts: {
         ui: 'bdd',
         timeout: 10000,
-        retries: 2,
+        retries: 1,
         slow: 1000,
         grep: '@SMOKE'
     },  
