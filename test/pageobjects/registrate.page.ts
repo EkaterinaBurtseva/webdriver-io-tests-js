@@ -18,6 +18,7 @@ export class RegistrationPage extends Page {
     get phoneNumberInput() { return $('#phone_mobile')}
     get aliasInput() { return $('#alias') }
     get submitButton() { return $('#submitAccount')}
+    get myAccountInfo() {return $('p.info-account')}
 
     startRegisterAndWaitForForm (email) {
         this.inputNewEmail.setValue(email);
@@ -25,11 +26,7 @@ export class RegistrationPage extends Page {
         this.accountForm.waitForDisplayed();
     }
 
-    fillAccountFormAndSubmit(customerFirstName, customerLastName, firstName, lastName, addressInfo, cityInput, 
-        selectStateInfo, postcode, phoneNumberInput, alias){
-        this.genderOptionFemale.click();
-        this.customerFirstName.setValue(customerFirstName);
-        this.customerLastName.setValue(customerLastName);
+    fillAccountForm(firstName, lastName, addressInfo, cityInput, selectStateInfo, postcode, phoneNumberInput, alias){
         this.firstName.setValue(firstName);
         this.lastName.setValue(lastName);
         this.addressInfo.setValue(addressInfo);
@@ -38,12 +35,29 @@ export class RegistrationPage extends Page {
         this.postcodeInput.setValue(postcode);
         this.phoneNumberInput.setValue(phoneNumberInput);
         this.aliasInput.setValue(alias);
+    }
+
+    submitForm(){
         this.submitButton.click();
+    }
+
+    fillCustomerInformation(customerFirstName, customerLastName, password){
+        this.genderOptionFemale.click();
+        this.customerFirstName.setValue(customerFirstName);
+        this.customerLastName.setValue(customerLastName);
+        this.password.setValue(password);
     }
 
     open () {
         return super.open('index.php?controller=authentication&back=my-account');
     }
-}
 
-module.exports = new RegistrationPage();
+    isAccountPageDisplayed() : boolean {
+       return this.myAccountInfo.isDisplayed();
+    }
+
+    getTextAccountPageText() : String {
+        return this.myAccountInfo.getText();
+     }
+}
+ export const registrationPage = new RegistrationPage();
