@@ -1,6 +1,14 @@
 export class MyAccountForm {
 
-    get btnSubmit () { return $('button[type="submit"]') }
+    private get container() :  WebdriverIO.Element {
+        return $('#account-creation_form')
+    }
+
+     get btnSubmit () : Item  { 
+        return new Item(this.container.$('button[type="submit"]').click())
+    }
+
+
     get emailField() { return $('#email_create')}
     get genderOptionFemale() { return $('#id_gender2')}
     get customerFirstName() { return $('#customer_firstname') }
@@ -38,6 +46,24 @@ export class MyAccountForm {
         this.customerLastName.setValue(lastname);
         this.password.setValue(password);
     }
+}
+
+class Item {
+    container
+    
+    constructor(itemContainer) {
+        this.container = itemContainer
+    }
+
+    public getSubmitBtn() {
+        return this.container.$('button[type="submit"]')
+    }
+
+    public getProductPrice() :  number {
+        return parseFloat(this.container.getAttribute('data-price'))
+
+    }
+
 }
 
 export const myAccountForm = new MyAccountForm();

@@ -1,4 +1,7 @@
+const { Application } = require("./test/pageobjects/application");
+
 require("ts-node").register({files:true});
+const {App} = require("../pageobjects/application")
 exports.config = {
     runner: 'local',
     specs: [
@@ -12,6 +15,9 @@ exports.config = {
     beforeTest: function (test, context) {
     console.log('WDIO: BEFORE SUITE: ', test, context)
     },
+    // before: function (capabilities, specs){
+    //     global.App = App;
+    // },
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',

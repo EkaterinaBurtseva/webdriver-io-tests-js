@@ -3,12 +3,7 @@ import { Page } from '../pageobjects/page';
 import { MyAccountForm } from '../pageobjects/components/accountForm';
 
 export class RegistrationPage extends Page {
-    myAccountForm
-
-    constructor() {
-        super()
-        this.myAccountForm = new MyAccountForm();
-    }
+    myAccountForm : MyAccountForm = new MyAccountForm();
 
     get accountForm(){ return $('#account-creation_form')}
     get inputNewEmail () { return $('#email_create') }

@@ -1,4 +1,6 @@
 import * as chai from 'chai'
+// import { Application } from '../pageobjects/application';
+// declare const App : Application
 import { App } from '../pageobjects/application';
 
 describe('@SMOKE User', () => {
